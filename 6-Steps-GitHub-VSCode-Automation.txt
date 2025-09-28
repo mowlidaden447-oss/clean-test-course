@@ -1,0 +1,73 @@
+﻿6 STEPS TO CONNECT GITHUB TO VISUAL STUDIO CODE FOR AUTOMATION UNIT TESTING
+================================================================================
+
+STEP 1: Initialize Git Repository
+--------------------------------
+Command: git init
+Purpose: Create a local Git repository in your project
+Location: Run this in your project root directory
+Result: Git tracking starts for your project files
+
+STEP 2: Create .gitignore File
+------------------------------
+Create .gitignore for Python/Django project with:
+- __pycache__/
+- *.pyc
+- env/
+- venv/
+- .coverage
+- db.sqlite3
+- node_modules/
+Purpose: Exclude unnecessary files from Git tracking
+Result: Clean repository with only source code
+
+STEP 3: Connect to GitHub Repository
+------------------------------------
+Command: git remote add origin https://github.com/username/repository-name.git
+Purpose: Link your local repository to GitHub
+Replace: username/repository-name with your actual GitHub repository
+Result: Local and remote repositories are connected
+
+STEP 4: Create GitHub Actions Workflow
+-------------------------------------
+Create .github/workflows/ci.yml file with:
+- name: Unit Tests
+- on: [push, pull_request]
+- jobs: test with ubuntu-latest
+- steps: checkout, setup Python, install dependencies, run tests
+Purpose: Automate testing on every code push
+Triggers: Push to any branch, pull requests
+Actions: Install dependencies, run tests, generate coverage
+
+STEP 5: Commit and Push to GitHub
+--------------------------------
+Commands:
+- git add .
+- git commit -m "Initial commit with automation setup"
+- git push -u origin main
+Purpose: Upload your code and automation to GitHub
+Result: GitHub Actions workflow is triggered automatically
+Verification: Check GitHub Actions tab for running workflows
+
+STEP 6: Verify Automation in VS Code
+-----------------------------------
+1. Open VS Code Source Control (Ctrl + Shift + G)
+2. Make changes to test files
+3. Stage changes (click + next to files)
+4. Commit with message (e.g., "added unit tests")
+5. Push to GitHub (sync button)
+6. Check GitHub Actions for automated test results
+
+EXPECTED RESULTS:
+- Automated testing runs on every push
+- Coverage reports generated automatically
+- VS Code integration for easy Git management
+- GitHub Actions show test results
+- Continuous integration pipeline established
+
+BENEFITS:
+- Automated testing on every code change
+- Coverage tracking for code quality
+- Team collaboration through GitHub
+- VS Code integration for seamless workflow
+- CI/CD pipeline for professional development

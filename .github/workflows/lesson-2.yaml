@@ -1,9 +1,10 @@
-name: Lesson 2
+﻿name: Lesson 2
 
 on:
   push:
     branches:
       - lesson-2
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -12,6 +13,10 @@ jobs:
         working-directory: backend
     steps:
       - uses: actions/checkout@v4
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Disable Debug
         run: |
           sed -i 's/DEBUG = True/DEBUG = False/g' hangry_api/hangry_api/settings.py
@@ -19,8 +24,3 @@ jobs:
         run: zip -r deploy.zip . -x '*.git*'
       - name: '**PLACEHOLDER** Deploy to Elastic Beanstalk'
         run: echo Placeholder for Deployment
-- name: Install Python dependencies
-  run: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  working-directory: ./backend

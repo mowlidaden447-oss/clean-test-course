@@ -5,15 +5,23 @@ on:
     branches:
       - lesson-5
 jobs:
+  security_test:
   build_and_test:
+  
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: backend
+    name: Execute the PyCharm security test
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
+      - name: Run PyCharm security test
+        uses: tonybaloney/PyCharm-security@1.25.1
+  build_and_test:
+    needs: [security_test]
+    runs-on: ubuntu-latest
         with:
           python-version: '3.10'
       - name: Install dependencies
